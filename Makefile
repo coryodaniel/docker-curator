@@ -29,6 +29,7 @@ tmp:
 
 clean:
 	@rm -rf ./tmp
+	@docker ps --format "{{.Names}}" -a | grep "${TEST_PREFIX}" | xargs docker stop
 	@docker ps --format "{{.Names}}" -a | grep "${TEST_PREFIX}" | xargs docker rm
 
 run: tmp
